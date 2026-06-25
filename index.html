@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Section 01 — Business Foundations | CEO Table Resource Library</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pd:#3C3489;--pm:#6B68B8;--p:#9895D3;--pl:#EEEDFE;
+  --g:#D09963;--gl:#FAF3E8;--gd:#A8742D;
+  --w:#FFFFFF;--off:#F8F7FF;--ch:#2D2B3D;--gr:#6B6B8A;--lgt:#E8E7F5;
+  --grn:#0F6E56;--grnl:#E1F5EE;--red:#B03030;--redl:#FFF0F0;
+  --fd:'Playfair Display',serif;--fb:'DM Sans',sans-serif;
+  --r:12px;--rs:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--fb);background:var(--off);color:var(--ch);line-height:1.65;}
+
+/* TOP BAR */
+.bar{position:sticky;top:0;z-index:200;background:var(--pd);padding:.65rem 2rem;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 20px rgba(60,52,137,.4);}
+.bar-brand{font-family:var(--fd);font-style:italic;color:var(--w);font-size:1rem;}
+.bar-brand span{color:var(--g);}
+.bar-r{display:flex;align-items:center;gap:.65rem;}
+.bar-prog{background:rgba(255,255,255,.1);border-radius:20px;padding:.28rem .8rem;font-size:.72rem;color:var(--w);font-weight:500;}
+.bar-prog strong{color:var(--g);}
+.btn-pdf{background:var(--g);color:var(--pd);border:none;border-radius:var(--rs);padding:.38rem .85rem;font-family:var(--fb);font-size:.74rem;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.35rem;}
+.btn-pdf:hover{background:var(--gd);color:var(--w);}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--pd) 0%,var(--pm) 55%,var(--p) 100%);padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-80px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(208,153,99,.18) 0%,transparent 70%);pointer-events:none;}
+.h-eye{font-size:.67rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--g);margin-bottom:.55rem;}
+.h-title{font-family:var(--fd);font-style:italic;font-size:clamp(1.8rem,4vw,2.6rem);color:var(--w);line-height:1.2;margin-bottom:.55rem;}
+.h-title em{font-style:normal;color:var(--g);}
+.h-sub{font-size:.88rem;color:rgba(255,255,255,.7);max-width:520px;margin:0 auto 1.75rem;line-height:1.7;}
+.op-wrap{max-width:420px;margin:0 auto;}
+.op-row{display:flex;justify-content:space-between;font-size:.72rem;color:rgba(255,255,255,.6);margin-bottom:.4rem;}
+.op-row strong{color:var(--g);}
+.op-track{height:5px;background:rgba(255,255,255,.15);border-radius:10px;overflow:hidden;}
+.op-fill{height:100%;background:linear-gradient(90deg,var(--g),#F0C080);border-radius:10px;transition:width .5s;width:0%;}
+
+/* NAV TABS */
+.nav-tabs{background:var(--w);border-bottom:2px solid var(--lgt);display:flex;overflow-x:auto;padding:0 1.5rem;position:sticky;top:52px;z-index:100;box-shadow:0 2px 8px rgba(60,52,137,.06);}
+.nav-tabs::-webkit-scrollbar{height:3px;}
+.nav-tabs::-webkit-scrollbar-thumb{background:var(--pl);}
+.nav-tab{flex-shrink:0;padding:.85rem 1.1rem;font-size:.78rem;font-weight:500;color:var(--gr);border-bottom:2.5px solid transparent;cursor:pointer;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:.4rem;}
+.nav-tab:hover{color:var(--pd);}
+.nav-tab.active{color:var(--pd);border-bottom-color:var(--pd);font-weight:600;}
+.nt-num{width:18px;height:18px;border-radius:50%;background:var(--pl);color:var(--pd);font-size:.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+/* CONTAINER */
+.wrap{max-width:860px;margin:0 auto;padding:2rem 1.5rem 4rem;}
+
+/* PANEL */
+.panel{display:none;}
+.panel.active{display:block;}
+
+/* RESOURCE CARD */
+.res-card{background:var(--w);border-radius:var(--r);border:1px solid var(--lgt);box-shadow:0 2px 12px rgba(60,52,137,.06);margin-bottom:2rem;overflow:hidden;}
+.rc-hdr{background:var(--pl);padding:1.1rem 1.5rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;border-bottom:1px solid var(--lgt);}
+.rc-eye{font-size:.62rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--p);margin-bottom:3px;}
+.rc-title{font-family:var(--fd);font-size:1.2rem;font-weight:600;color:var(--pd);}
+.rc-desc{font-size:.82rem;color:var(--gr);margin-top:4px;line-height:1.5;}
+.rc-tag{flex-shrink:0;font-size:.62rem;font-weight:600;padding:3px 10px;border-radius:20px;background:var(--grnl);color:var(--grn);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;margin-top:2px;}
+
+/* LAV BAR */
+.lav{background:var(--pl);padding:.5rem 1.5rem;font-size:.64rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--pd);border-top:1px solid var(--lgt);}
+
+/* BODY */
+.rc-body{padding:1.5rem;}
+
+/* CALLOUT */
+.callout{border:1.5px solid var(--g);border-radius:var(--rs);background:var(--gl);padding:.85rem 1.1rem;margin-bottom:1.1rem;}
+.cl-lbl{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gd);margin-bottom:3px;}
+.callout p{font-size:.83rem;color:var(--gd);line-height:1.6;}
+
+/* QUOTE */
+.quote{background:var(--pd);border-radius:var(--rs);padding:1rem 1.25rem;margin-bottom:1.1rem;}
+.quote p{font-family:var(--fd);font-style:italic;color:var(--w);font-size:.9rem;line-height:1.6;}
+.q-attr{margin-top:.38rem;font-size:.63rem;color:var(--g);font-weight:600;letter-spacing:.05em;}
+
+/* FIELDS */
+.fg{margin-bottom:1rem;}
+.fl{font-size:.66rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--p);display:block;margin-bottom:.35rem;}
+.fi,.ta{width:100%;border:1.5px solid var(--lgt);border-radius:var(--rs);padding:.5rem .8rem;font-family:var(--fb);font-size:.85rem;color:var(--ch);background:var(--off);outline:none;transition:all .2s;}
+.fi:focus,.ta:focus{border-color:var(--p);box-shadow:0 0 0 3px rgba(152,149,211,.14);background:var(--w);}
+.fi::placeholder,.ta::placeholder{color:#C0BEE0;}
+.ta{resize:vertical;min-height:58px;}
+
+/* GRIDS */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;}
+
+/* CHECKBOX TABLE */
+.cb-table{width:100%;border-collapse:collapse;margin-bottom:.85rem;}
+.cb-table th{background:var(--pl);padding:.45rem .75rem;font-size:.64rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--pd);text-align:left;border-bottom:2px solid var(--lgt);}
+.cb-table td{padding:.5rem .75rem;border-bottom:1px solid var(--lgt);font-size:.84rem;vertical-align:middle;}
+.cb-table tr:last-child td{border-bottom:none;}
+.cb-table tr:nth-child(even) td{background:rgba(152,149,211,.04);}
+.cb-check{display:none;}
+.cb-box{width:20px;height:20px;border:2px solid var(--p);border-radius:5px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;background:var(--w);flex-shrink:0;}
+.cb-check:checked+.cb-box{background:var(--p);border-color:var(--p);}
+.cb-check:checked+.cb-box::after{content:'✓';color:#fff;font-size:12px;font-weight:700;}
+.cb-label{font-size:.84rem;font-weight:500;}
+.cb-note{font-size:.76rem;color:var(--gr);line-height:1.4;}
+.cb-status{font-size:.7rem;font-weight:600;padding:2px 8px;border-radius:20px;white-space:nowrap;}
+.s-yes{background:var(--grnl);color:var(--grn);}
+.s-no{background:var(--redl);color:var(--red);}
+.s-ip{background:var(--pl);color:var(--pd);}
+
+/* ORG CHART */
+.org-wrap{margin:1rem 0;}
+.org-level{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap;margin-bottom:.35rem;}
+.org-card{background:var(--pl);border-radius:var(--rs);padding:.65rem .9rem;text-align:center;min-width:120px;border:1.5px solid var(--p);position:relative;}
+.org-card.top{background:var(--pd);border-color:var(--pd);}
+.org-card.top .oc-title{color:var(--w);}
+.org-card.top .oc-name{color:var(--g);}
+.oc-title{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--p);margin-bottom:2px;}
+.oc-name{font-size:.82rem;font-weight:600;color:var(--pd);}
+.oc-input{width:100%;border:none;border-bottom:1.5px solid var(--p);background:transparent;font-family:var(--fb);font-size:.82rem;color:var(--pd);outline:none;text-align:center;padding:.2rem 0;}
+.oc-input::placeholder{color:#B0AECF;}
+.org-arrow{text-align:center;color:var(--p);font-size:.9rem;line-height:1.2;margin-bottom:.2rem;}
+
+/* RATING STARS */
+.rating-row{display:flex;align-items:center;gap:.75rem;padding:.6rem 0;border-bottom:1px solid var(--lgt);}
+.rating-row:last-child{border-bottom:none;}
+.rr-label{flex:1;font-size:.84rem;font-weight:500;color:var(--ch);}
+.rr-stars{display:flex;gap:.25rem;}
+.rr-star{font-size:1.1rem;cursor:pointer;color:var(--lgt);transition:color .15s;}
+.rr-star.lit{color:var(--g);}
+.rr-note{width:160px;}
+
+/* SECTION DIVIDER */
+.sec-div{display:flex;align-items:center;gap:.75rem;margin:1.5rem 0 1rem;}
+.sec-div-line{flex:1;height:1px;background:var(--lgt);}
+.sec-div-text{font-size:.65rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gr);}
+
+/* TOAST */
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--grn);color:var(--w);font-size:.78rem;font-weight:600;padding:.55rem 1.1rem;border-radius:20px;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;z-index:999;}
+.toast.show{opacity:1;transform:translateY(0);}
+
+footer{background:var(--pd);text-align:center;padding:1.1rem;font-size:.7rem;color:rgba(255,255,255,.4);letter-spacing:.05em;}
+footer a{color:var(--g);text-decoration:none;}
+
+@media print{.bar,.nav-tabs,.btn-pdf,.toast{display:none!important;}.panel{display:block!important;}.hero{background:var(--pd)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+@media(max-width:580px){.two,.three{grid-template-columns:1fr;}.wrap{padding:1.25rem 1rem 3rem;}.bar{padding:.6rem 1rem;}.btn-pdf span{display:none;}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-brand">Consulting with <span>AJR</span></div>
+  <div class="bar-r">
+    <div class="bar-prog">Progress: <strong id="hdr-pct">0%</strong></div>
+    <button class="btn-pdf" onclick="window.print()">⬇ <span>Save PDF</span></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="h-eye">CEO Table · Resource Library · Section 01</div>
+  <h1 class="h-title">Business <em>Foundations</em></h1>
+  <p class="h-sub">Mission, vision, org structure, and hiring basics. You cannot scale a business that doesn't know what it stands for. Build the foundation here first.</p>
+  <div class="op-wrap">
+    <div class="op-row"><span>Section completion</span><strong id="op-count">0 of 4 resources</strong></div>
+    <div class="op-track"><div class="op-fill" id="op-fill"></div></div>
+  </div>
+</section>
+
+<nav class="nav-tabs" id="nav">
+  <div class="nav-tab active" onclick="show(0)" id="tab-0"><span class="nt-num">1</span>Mission + Vision</div>
+  <div class="nav-tab" onclick="show(1)" id="tab-1"><span class="nt-num">2</span>Org Chart Builder</div>
+  <div class="nav-tab" onclick="show(2)" id="tab-2"><span class="nt-num">3</span>Core Values</div>
+  <div class="nav-tab" onclick="show(3)" id="tab-3"><span class="nt-num">4</span>Hiring Basics</div>
+</nav>
+
+<main class="wrap">
+
+<!-- ════════════════════════════════ -->
+<!-- RESOURCE 1: MISSION + VISION -->
+<!-- ════════════════════════════════ -->
+<div class="panel active" id="p0">
+<div class="res-card">
+  <div class="rc-hdr">
+    <div>
+      <div class="rc-eye">Resource 1.1 · Business Foundations</div>
+      <div class="rc-title">Mission + Vision Statement Builder</div>
+      <div class="rc-desc">Define what your program stands for, who it serves, and where it's going. These two statements anchor every business decision you make.</div>
+    </div>
+    <div class="rc-tag">Foundation</div>
+  </div>
+
+  <div class="rc-body">
+    <div class="quote">
+      <p>"You cannot build a scalable business on vibes. Your mission is the filter for every hire, every policy, every family you enroll. If you don't know what you stand for, your team won't either."</p>
+      <div class="q-attr">— Aliya Johnson-Roberts, AJR Consulting</div>
+    </div>
+
+    <div class="callout">
+      <div class="cl-lbl">The difference</div>
+      <p><strong>Mission</strong> is present tense — what you do, who you serve, and why you exist right now. <strong>Vision</strong> is future tense — where you are going and what the world looks like when you get there. Both are necessary. Neither should be longer than 2–3 sentences.</p>
+    </div>
+
+    <div class="lav" style="margin:0 -1.5rem 1.25rem;padding-left:1.5rem;">Step 1 — Know Your Foundation</div>
+
+    <div class="fg">
+      <label class="fl">My program name</label>
+      <input class="fi" type="text" placeholder="e.g. Sunshine Learning Center" data-key="mv-name">
+    </div>
+    <div class="two">
+      <div class="fg">
+        <label class="fl">City / State</label>
+        <input class="fi" type="text" placeholder="e.g. Philadelphia, PA" data-key="mv-city">
+      </div>
+      <div class="fg">
+        <label class="fl">Years in operation</label>
+        <input class="fi" type="text" placeholder="e.g. 6 years" data-key="mv-years">
+      </div>
+    </div>
+    <div class="fg">
+      <label class="fl">The children I serve (ages + community)</label>
+      <textarea class="ta" placeholder="e.g. Children ages 6 weeks to 12 years in underserved communities in West Philadelphia — families who need quality care and cannot always afford private pay rates." data-key="mv-who"></textarea>
+    </div>
+    <div class="fg">
+      <label class="fl">Why I opened this program (the real reason — not the polished version)</label>
+      <textarea class="ta" placeholder="Write what actually drove you to do this. The personal story, the gap you saw, the thing that made you say 'I can do this better.'" data-key="mv-why"></textarea>
+    </div>
+    <div class="fg">
+      <label class="fl">What makes my program different from others in my area</label>
+      <textarea class="ta" placeholder="Curriculum approach, community ties, staff culture, your own expertise, specialized population served — what do families choose you for?" data-key="mv-diff"></textarea>
+    </div>
+
+    <div class="lav" style="margin:0 -1.5rem 1.25rem;padding-left:1.5rem;">Step 2 — Draft Your Mission Statement</div>
+
+    <div class="callout">
+      <div class="cl-lbl">Mission formula</div>
+      <p>[Program name] exists to [what you do] for [who you serve] so that [the outcome you create]. We believe [your core belief about children, families, or education].</p>
+    </div>
+
+    <div class="fg">
+      <label class="fl">My mission statement (first draft — write, don't overthink)</label>
+      <textarea class="ta" style="min-height:80px;" placeholder="[Program name] exists to provide... for... so that... We believe..." data-key="mv-mission1"></textarea>
+    </div>
+    <div class="fg">
+      <label class="fl">My mission statement — refined version (tighten it to 2 sentences max)</label>
+      <textarea class="ta" style="min-height:70px;" placeholder="Cleaner, tighter, more powerful. Read it out loud — if it doesn't sound like you, rewrite it." data-key="mv-mission2"></textarea>
+    </div>
+
+    <div class="lav" style="margin:0 -1.5rem 1.25rem;padding-left:1.5rem;">Step 3 — Draft Your Vision Statement</div>
+
+    <div class="callout">
+      <div class="cl-lbl">Vision formula</div>
+      <p>By [time horizon], [program name] will be [what your program looks like at its best] — a place where [what is true for children / families / staff]. We are building [the legacy / the impact].</p>
+    </div>
+
+    <div class="fg">
+      <label class="fl">Where do I want this program to be in 5 years?</label>
+      <textarea class="ta" placeholder="Number of children served, geographic reach, STARS/quality rating, programs offered, your role in the community..." data-key="mv-5yr"></textarea>
+    </div>
+    <div class="fg">
+      <label class="fl">My vision statement (first draft)</label>
+      <textarea class="ta" style="min-height:80px;" placeholder="By [year], [program name] will be..." data-key="mv-vision1"></textarea>
+    </div>
+    <div class="fg">
+      <label class="fl">My vision statement — refined version</label>
+      <textarea class="ta" style="min-height:70px;" placeholder="Read it. Does it give you energy? Does it feel true? If not — rewrite it until it does." data-key="mv-vision2"></textarea>
+    </div>
+
+    <div class="lav" style="margin:0 -1.5rem 1.25rem;padding-left:1.5rem;">Step 4 — Put It to Work</div>
+
+    <div class="fg">
+      <label class="fl">Where I will post my mission statement so my team sees it</label>
+      <textarea class="ta" placeholder="e.g. Staff break room, staff handbook, website, new hire orientation, family handbook, front door..." data-key="mv-post"></textarea>
+    </div>
+    <div class="fg">
+      <label class="fl">One decision I can make differently this week now that my mission is clear</label>
+      <textarea class="ta" placeholder="e.g. Revisit a family I almost turned away. Rewrite a job posting to reflect our culture. Update our intake process to align with our why." data-key="mv-action"></textarea>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════ -->
+<!-- RESOURCE 2: ORG CHART BUILDER -->
+<!-- ════════════════════════════════ -->
+<div class="panel" id="p1">
+<div class="res-card">
+  <div class="rc-hdr">
+    <div>
+      <div class="rc-eye">Resource 1.2 · Business Foundations</div>
+      <div class="rc-title">Org Chart Builder</div>
+      <div class="rc-desc">Map your current structure and your growth structure. Know who reports to whom before the confusion costs you a staff member.</div>
+    </div>
+    <div class="rc-tag">Structure</div>
+  </div>
+
+  <div class="rc-body">
+    <div class="quote">
+      <p>"If everyone reports to you — no one is really being led. Build a structure that can hold more than you can carry alone. That is what makes scaling possible."</p>
+      <div class="q-attr">— Aliya Johnson-Roberts, AJR Consulting</div>
+    </div>
+
+    <div class="callout">
+      <div class="cl-lbl">Before you build</div>
+      <p>An org chart is not just a box exercise. It tells you who is accountable for what, who has authority to make decisions, and where the gaps are. If you are in every box — that is your growth problem, not a staffing problem.</p>
+    </div>
+
+    <div class="lav" style="margin:0 -1.5rem 1.25rem;padding-left:1.5rem;">My Program Type</div>
+    <div class="fg">
+      <label class="fl">Program type (check what applies)</label>
+      <div style="display:flex;gap:1.25rem;flex-wrap:wrap;margin-bottom:.5rem;">
+        <label style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;cursor:pointer;"><input type="checkbox" data-key="oc-type-fcc"> Family / Group Home</label>
+        <label style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;cursor:pointer;"><input type="checkbox" data-key="oc-type-center"> Child Care Center</label>
+        <label style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;cursor:pointer;"><input type="checkbox" data-key="oc-type-multi"> Multi-Site</label>
+      </div>
+    </div>
+
+    <div class="two">
+      <div class="fg">
+        <label class="fl">Total staff (W-2 employees)</label>
+        <input class="fi" type="number" placeholder="e.g. 14" data-key="oc-staff">
+      </div>
+      <div class="fg">
+        <label class="fl">Number of classrooms / rooms</label>
+        <input class="fi" type="number" placeholder="e.g. 5" data-key="oc-rooms">
+      </div>
+    </div>
+
+    <div class="lav" style="margin:0 -1.5rem 1.25rem;padding-left:1.5rem;">Current Org Chart — Who Is In Each Role Right Now</div>
+
+    <div class="org-wrap">
+      <div class="org-level">
+        <div class="org-card top" style="min-width:200px;">
+          <div class="oc-title">Owner / CEO</div>
+          <input class="oc-input" type="text" placeholder="Your name" data-key="oc-ceo" style="color:var(--g);border-color:rgba(208,153,99,.4);">
+        </div>
+      </div>
+      <div class="org-arrow">↓</div>
+      <div class="org-level">
+        <div class="org-card">
+          <div class="oc-title">Director / Site Leader</div>
+          <input class="oc-input" type="text" placeholder="Name or Vacant" data-key="oc-dir">
+        </div>
+        <div class="org-card">
+          <div class="oc-title">Operations Manager</div>
+          <input class="oc-input" type="text" placeholder="Name or Vacant" data-key="oc-ops">
+        </div>
+        <div class="org-card">
+          <div class="oc-title">Office / Admin</div>
+          <input class="oc-input" type="text" placeholder="Name or Vacant" data-key="oc-admin">
+        </div>
+      </div>
+      <div class="org-arrow">↓</div>
+      <div class="org-level">
+        <div class="org-card">
+          <div class="oc-title">Lead Teacher (Room 1)</div>
+          <input class="oc-input" type="text" placeholder="Name or Vacant" data-key="oc-lt1">
+        </div>
+        <div class="org-card">
+          <div class="oc-title">Lead Teacher (Room 2)</div>
+          <input class="oc-input" type="text" placeholder="Name or Vacant" data-key="oc-lt2">
+        </div>
+        <div class="org-card">
+          <div class="oc-title">Lead Teacher (Room 3)</div>
+          <input class="oc-input" type="text" placeholder="Name or Vacant" data-key="oc-lt3">
+        </div>
+      </div>
+      <div class="org-arrow">↓</div>
+      <div class="org-level">
+        <div class="org-card" style="background:var(--off);">
+          <div class="oc-title" style="color:var(--gr);">Assistant Teachers / Floaters</div>
+          <input class="oc-input" type="text" placeholder="# of assistants" data-key="oc-asst" style="color:var(--ch);border-color:var(--lgt);">
+        </div>
+        <div class="org-card" style="background:var(--off);">
+          <div class="oc-title" style="color:var(--gr);">Support Staff (kitchen, custodial)</div>
+          <input class="oc-input" type="text" placeholder="Names or count" data-key="oc-support" style="color:var(--ch);border-color:var(--lgt);">
+        </div>
+      </div>
+    </div>
+
+    <div class="lav" style="margin:1.5rem -1.5rem 1.25rem;padding-left:1.5rem;">Org Chart Audit — What This Reveals</div>
+
+    <div class="fg">
+      <label class="fl">Roles I am personally filling right now that should belong to someone else</label>
+      <textarea class="ta" placeholder="e.g. I am the director, lead teacher in Room 2, handle all enrollment calls, and do all parent communication. Those last two should not be me." data-key="oc-wearing"></textarea>
+    </div>
+    <div class="fg">
+      <label class="fl">The role I most need to hire for or delegate to first</label>
+      <input class="fi" type="text" placeholder="e.g. Director / Site Leader — so I can step back from daily operations" data-key="oc-hire1">
+    </div>
+    <div class="fg">
+      <label class="fl">My growth org chart — what this structure looks like in 2 years</label>
+      <textarea class="ta" placeholder="Who reports to whom when you are running at your growth vision? What new roles exist? Where are you spending your time?" data-key="oc-growth"></textarea>
+    </div>
+    <div class="fg">
+      <label class="fl">The gap between now and the growth chart — what needs to happen first</label>
+      <textarea class="ta" placeholder="Is it a hire? A promotion? A system? A revenue milestone? Name the specific steps." data-key="oc-gap"></textarea>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════ -->
+<!-- RESOURCE 3: CORE VALUES -->
+<!-- ════════════════════════════════ -->
+<div class="panel" id="p2">
+<div class="res-card">
+  <div class="rc-hdr">
+    <div>
+      <div class="rc-eye">Resource 1.3 · Business Foundations</div>
+      <div class="rc-title">Core Values Workbook</div>
+      <div class="rc-desc">Define the values that drive every hire, every policy, and every family interaction. Your values are your culture. Name them before your culture names itself.</div>
+    </div>
+    <div class="rc-tag">Culture</div>
+  </div>
+
+  <div class="rc-body">
+    <div class="quote">
+      <p>"Culture is not the poster on the wall. It is what happens when you are not in the room. Your core values are the filter your team uses to make decisions without you."</p>
+      <div class="q-attr">— Aliya Johnson-Roberts, AJR Consulting</div>
+    </div>
+
+    <div class="lav" style="margin:0 -1.5rem 1.25rem;padding-left:1.5rem;">Step 1 — Surface Your Values</div>
+
+    <div class="fg">
+      <label class="fl">When I think about my very best staff member — what qualities do they have that I wish everyone had?</label>
+      <textarea class="ta" placeholder="Think about the person who shows up early, goes above and beyond, treats children the way you would want yours treated. What drives them?" data-key="cv-best"></textarea>
+    </div>
+    <div class="fg">
+      <label class="fl">When I think about a staff or family situation that went wrong — what value was violated?</label>
+      <textarea class="ta" placeholder="Not gossip — honest reflection. What did the breakdown reveal about what matters in your program?" data-key="cv-wrong"></textarea>
+    </div>
+    <div class="fg">
+      <label class="fl">If a parent asked me 'What makes your program different?' — what would I say without hesitating?</label>
+      <textarea class="ta" placeholder="This is usually where your values are hiding. The things you say without thinking are the things you believe most." data-key="cv-diff"></textarea>
+    </div>
+
+    <div class="lav" style="margin:0 -1.5rem 1.25rem;padding-left:1.5rem;">Step 2 — Name Your Core Values (3–5 maximum)</div>
+
+    <div class="callout">
+      <div class="cl-lbl">How to use this</div>
+      <p>Each value needs a name AND a one-sentence definition — because "excellence" means something different to every person. Your definition is what you actually mean. Keep it to 3–5 values. More than 5 means none of them are really core.</p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:.85rem;margin-bottom:1.25rem;">
+      <div style="background:var(--pl);border-radius:var(--rs);padding:1rem;">
+        <div class="two" style="gap:.65rem;">
+          <div class="fg" style="margin:0;">
+            <label class="fl">Value 1 — Name</label>
+            <input class="fi" type="text" placeholder="e.g. Excellence" data-key="cv-v1">
+          </div>
+          <div class="fg" style="margin:0;">
+            <label class="fl">What we mean by it</label>
+            <input class="fi" type="text" placeholder="e.g. We hold ourselves to the highest standard even when no one is watching." data-key="cv-v1d">
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--pl);border-radius:var(--rs);padding:1rem;">
+        <div class="two" style="gap:.65rem;">
+          <div class="fg" style="margin:0;">
+            <label class="fl">Value 2 — Name</label>
+            <input class="fi" type="text" placeholder="e.g. Belonging" data-key="cv-v2">
+          </div>
+          <div class="fg" style="margin:0;">
+            <label class="fl">What we mean by it</label>
+            <input class="fi" type="text" placeholder="e.g. Every child and family who walks through our doors deserves to feel seen and known." data-key="cv-v2d">
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--pl);border-radius:var(--rs);padding:1rem;">
+        <div class="two" style="gap:.65rem;">
+          <div class="fg" style="margin:0;">
+            <label class="fl">Value 3 — Name</label>
+            <input class="fi" type="text" placeholder="e.g. Accountability" data-key="cv-v3">
+          </div>
+          <div class="fg" style="margin:0;">
+            <label class="fl">What we mean by it</label>
+            <input class="fi" type="text" placeholder="e.g. We own our mistakes, fix them quickly, and use them to improve." data-key="cv-v3d">
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--off);border-radius:var(--rs);padding:1rem;border:1px dashed var(--lgt);">
+        <div class="two" style="gap:.65rem;">
+          <div class="fg" style="margin:0;">
+            <label class="fl">Value 4 (optional)</label>
+            <input class="fi" type="text" placeholder="Name" data-key="cv-v4">
+          </div>
+          <div class="fg" style="margin:0;">
+            <label class="fl">What we mean by it</label>
+            <input class="fi" type="text" placeholder="Definition" data-key="cv-v4d">
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--off);border-radius:var(--rs);padding:1rem;border:1px dashed var(--lgt);">
+        <div class="two" style="gap:.65rem;">
+          <div class="fg" style="margin:0;">
+            <label class="fl">Value 5 (optional)</label>
+            <input class="fi" type="text" placeholder="Name" data-key="cv-v5">
+          </div>
+          <div class="fg" style="margin:0;">
+            <label class="fl">What we mean by it</label>
+            <input class="fi" type="text" placeholder="Definition" data-key="cv-v5d">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lav" style="margin:0 -1.5rem 1.25rem;padding-left:1.5rem;">Step 3 — Put Values to Work</div>
+
+    <div class="fg">
+      <label class="fl">How will I use these values in hiring? (Interview question tied to each value)</label>
+      <textarea class="ta" placeholder="e.g. For 'Excellence' — 'Tell me about a time you went above and beyond for a child or family when it wasn't expected of you.'" data-key="cv-hire"></textarea>
+    </div>
+    <div class="fg">
+      <label class="fl">How will I use these values in staff performance conversations?</label>
+      <textarea class="ta" placeholder="e.g. Monthly check-ins will include 'Which of our values did you live out this month? Where did you struggle?'" data-key="cv-perf"></textarea>
+    </div>
+    <div class="fg">
+      <label class="fl">How will families see these values in action in my program?</label>
+      <textarea class="ta" placeholder="What does each value look like from a family's perspective when they walk through your door?" data-key="cv-family"></textarea>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════ -->
+<!-- RESOURCE 4: HIRING BASICS -->
+<!-- ════════════════════════════════ -->
+<div class="panel" id="p3">
+<div class="res-card">
+  <div class="rc-hdr">
+    <div>
+      <div class="rc-eye">Resource 1.4 · Business Foundations</div>
+      <div class="rc-title">Hiring Basics Checklist + Toolkit</div>
+      <div class="rc-desc">The minimum every childcare owner needs before hiring one more person. Systems first — then staff.</div>
+    </div>
+    <div class="rc-tag">Systems</div>
+  </div>
+
+  <div class="rc-body">
+    <div class="quote">
+      <p>"Hiring without a system is hoping. And hope is not a staffing strategy. Before you post one more job, make sure you know what you're hiring for, how you'll evaluate them, and what happens when they start."</p>
+      <div class="q-attr">— Aliya Johnson-Roberts, AJR Consulting</div>
+    </div>
+
+    <div class="lav" style="margin:0 -1.5rem 1.25rem;padding-left:1.5rem;">Before You Post the Job — Pre-Hire Readiness Audit</div>
+
+    <div class="callout">
+      <div class="cl-lbl">Check each item that is currently in place</div>
+      <p>If you are checking less than 70% of these, build the system before you hire. A new person without a system does not solve your staffing problem — it creates a new one.</p>
+    </div>
+
+    <table class="cb-table">
+      <thead><tr><th style="width:32px;"></th><th>System / Document</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><input type="checkbox" class="cb-check" id="h1" onchange="save()"><label class="cb-box" for="h1"></label></td>
+          <td><div class="cb-label">Written job description for this role</div><div class="cb-note">Includes title, responsibilities, required qualifications, hours, and compensation range</div></td>
+          <td><select class="fi" style="width:auto;padding:.3rem .5rem;font-size:.78rem;" data-key="hs1"><option value="">—</option><option>In place</option><option>In progress</option><option>Not started</option></select></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="cb-check" id="h2" onchange="save()"><label class="cb-box" for="h2"></label></td>
+          <td><div class="cb-label">Onboarding checklist (Day 1 through Day 30)</div><div class="cb-note">New hire knows exactly what to expect for their first month</div></td>
+          <td><select class="fi" style="width:auto;padding:.3rem .5rem;font-size:.78rem;" data-key="hs2"><option value="">—</option><option>In place</option><option>In progress</option><option>Not started</option></select></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="cb-check" id="h3" onchange="save()"><label class="cb-box" for="h3"></label></td>
+          <td><div class="cb-label">Staff handbook (current, signed)</div><div class="cb-note">Policies on attendance, dress code, discipline, communication, and conduct</div></td>
+          <td><select class="fi" style="width:auto;padding:.3rem .5rem;font-size:.78rem;" data-key="hs3"><option value="">—</option><option>In place</option><option>In progress</option><option>Not started</option></select></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="cb-check" id="h4" onchange="save()"><label class="cb-box" for="h4"></label></td>
+          <td><div class="cb-label">Background check + clearance process documented</div><div class="cb-note">You know exactly which clearances are required and who tracks them</div></td>
+          <td><select class="fi" style="width:auto;padding:.3rem .5rem;font-size:.78rem;" data-key="hs4"><option value="">—</option><option>In place</option><option>In progress</option><option>Not started</option></select></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="cb-check" id="h5" onchange="save()"><label class="cb-box" for="h5"></label></td>
+          <td><div class="cb-label">At least 3 interview questions tied to your core values</div><div class="cb-note">Behavioral questions that reveal how a candidate actually thinks and acts</div></td>
+          <td><select class="fi" style="width:auto;padding:.3rem .5rem;font-size:.78rem;" data-key="hs5"><option value="">—</option><option>In place</option><option>In progress</option><option>Not started</option></select></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="cb-check" id="h6" onchange="save()"><label class="cb-box" for="h6"></label></td>
+          <td><div class="cb-label">Compensation structure (pay range for each role)</div><div class="cb-note">You know what you pay and why — not just whatever they ask for</div></td>
+          <td><select class="fi" style="width:auto;padding:.3rem .5rem;font-size:.78rem;" data-key="hs6"><option value="">—</option><option>In place</option><option>In progress</option><option>Not started</option></select></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="cb-check" id="h7" onchange="save()"><label class="cb-box" for="h7"></label></td>
+          <td><div class="cb-label">90-day check-in process for new staff</div><div class="cb-note">Formal touchpoint at 30, 60, and 90 days — not just a vibe check</div></td>
+          <td><select class="fi" style="width:auto;padding:.3rem .5rem;font-size:.78rem;" data-key="hs7"><option value="">—</option><option>In place</option><option>In progress</option><option>Not started</option></select></td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="cb-check" id="h8" onchange="save()"><label class="cb-box" for="h8"></label></td>
+          <td><div class="cb-label">Payroll system set up and tested</div><div class="cb-note">You are not paying people late or manually — every time</div></td>
+          <td><select class="fi" style="width:auto;padding:.3rem .5rem;font-size:.78rem;" data-key="hs8"><option value="">—</option><option>In place</option><option>In progress</option><option>Not started</option></select></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="lav" style="margin:0 -1.5rem 1.25rem;padding-left:1.5rem;">Your Interview Question Bank</div>
+
+    <div class="callout">
+      <div class="cl-lbl">The rule</div>
+      <p>Always ask behavioral questions — "Tell me about a time when..." not "Would you ever..." What someone has done predicts what they will do. Past behavior is the best interview data you have.</p>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.25rem;">
+      <div style="background:var(--pl);border-radius:var(--rs);padding:.85rem;">
+        <div style="font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--pd);margin-bottom:.4rem;">Culture Fit</div>
+        <div class="fg" style="margin:0;">
+          <input class="fi" type="text" placeholder='e.g. "Tell me about a time you went above and beyond for a child or family — and nobody asked you to."' data-key="hq-c1" style="background:var(--w);">
+        </div>
+      </div>
+      <div style="background:var(--pl);border-radius:var(--rs);padding:.85rem;">
+        <div style="font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--pd);margin-bottom:.4rem;">Conflict + Accountability</div>
+        <div class="fg" style="margin:0;">
+          <input class="fi" type="text" placeholder='"Tell me about a time you made a mistake at work. What did you do and what did you learn?"' data-key="hq-c2" style="background:var(--w);">
+        </div>
+      </div>
+      <div style="background:var(--pl);border-radius:var(--rs);padding:.85rem;">
+        <div style="font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--pd);margin-bottom:.4rem;">Team + Communication</div>
+        <div class="fg" style="margin:0;">
+          <input class="fi" type="text" placeholder='"Describe a situation where you disagreed with a supervisor. How did you handle it?"' data-key="hq-c3" style="background:var(--w);">
+        </div>
+      </div>
+      <div style="background:var(--off);border-radius:var(--rs);padding:.85rem;border:1px dashed var(--lgt);">
+        <div style="font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gr);margin-bottom:.4rem;">My custom question (tied to my values)</div>
+        <div class="fg" style="margin:0;">
+          <input class="fi" type="text" placeholder="Write a question specific to what matters most in your program..." data-key="hq-custom">
+        </div>
+      </div>
+    </div>
+
+    <div class="lav" style="margin:0 -1.5rem 1.25rem;padding-left:1.5rem;">My Hiring Priority Right Now</div>
+
+    <div class="fg">
+      <label class="fl">The role I need to fill most urgently</label>
+      <input class="fi" type="text" placeholder="e.g. Lead Teacher — Infant/Toddler Room" data-key="hp-role">
+    </div>
+    <div class="two">
+      <div class="fg">
+        <label class="fl">Why this role is urgent</label>
+        <textarea class="ta" placeholder="Impact on compliance, enrollment capacity, your own time..." data-key="hp-why"></textarea>
+      </div>
+      <div class="fg">
+        <label class="fl">What this role will cost me if unfilled for 60 more days</label>
+        <textarea class="ta" placeholder="Revenue at risk, coverage gaps, your own burnout, compliance exposure..." data-key="hp-cost"></textarea>
+      </div>
+    </div>
+    <div class="fg">
+      <label class="fl">Where I will post this job (be specific — not just 'social media')</label>
+      <textarea class="ta" placeholder="e.g. Indeed + Facebook Jobs + local college ECE department job board + post in three community Facebook groups + ask current staff for referrals with a $100 referral bonus" data-key="hp-post"></textarea>
+    </div>
+    <div class="fg">
+      <label class="fl">My deadline to have this role filled</label>
+      <input class="fi" type="text" placeholder="e.g. July 18, 2026 — by start of new program year" data-key="hp-deadline">
+    </div>
+  </div>
+</div>
+</div>
+
+</main>
+
+<footer>CEO Table Membership · Resource Library · Section 01 · <a href="https://consultingwithajr.com">consultingwithajr.com</a> · © 2026 AJR Consulting</footer>
+<div class="toast" id="toast">✓ Progress saved</div>
+
+<script>
+function show(i){
+  document.querySelectorAll('.panel').forEach((p,n)=>p.classList.toggle('active',n===i));
+  document.querySelectorAll('.nav-tab').forEach((t,n)=>t.classList.toggle('active',n===i));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// Progress — one marker per panel (last field or checkbox in each)
+const MARKERS=['mv-action','oc-gap','cv-family','hp-deadline'];
+function updateProgress(){
+  let done=0;
+  MARKERS.forEach(k=>{
+    const el=document.querySelector(`[data-key="${k}"]`);
+    if(el&&el.value&&el.value.trim()) done++;
+  });
+  const pct=Math.round(done/MARKERS.length*100);
+  document.getElementById('op-fill').style.width=pct+'%';
+  document.getElementById('op-count').textContent=done+' of 4 resources';
+  document.getElementById('hdr-pct').textContent=pct+'%';
+}
+
+let st;
+function save(){
+  clearTimeout(st);
+  st=setTimeout(()=>{
+    const s={};
+    document.querySelectorAll('[data-key]').forEach(el=>{
+      s[el.dataset.key]= el.type==='checkbox'?el.checked:el.value;
+    });
+    localStorage.setItem('ajr-s01',JSON.stringify(s));
+    const t=document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),1800);
+    updateProgress();
+  },500);
+}
+
+function load(){
+  try{
+    const s=JSON.parse(localStorage.getItem('ajr-s01')||'{}');
+    Object.entries(s).forEach(([k,v])=>{
+      const el=document.querySelector(`[data-key="${k}"]`);
+      if(!el)return;
+      if(el.type==='checkbox') el.checked=v;
+      else el.value=v;
+    });
+    updateProgress();
+  }catch(e){}
+}
+
+document.querySelectorAll('input:not([type=checkbox]),textarea,select').forEach(el=>el.addEventListener('input',save));
+document.querySelectorAll('input[type=checkbox]').forEach(el=>el.addEventListener('change',save));
+load();
+</script>
+</body>
+</html>
